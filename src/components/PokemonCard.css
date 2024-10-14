@@ -1,0 +1,11 @@
+.pokemon-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    text-transform: capitalize;
+    transition: background-color 0.3s;
+}
+  
+.pokemon-card:hover {
+    background-color: #f0f0f0;
+}
