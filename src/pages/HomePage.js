@@ -11,23 +11,23 @@ const HomePage = () => {
   const [search, setSearch] = useState('');
   const [offset, setOffset] = useState(0);
 
-  const fetchPokemon = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`
-      );
-      setPokemon((prev) => [...prev, ...response.data.results]);
-      setLoading(false);
-    } catch (err) {
-      setError('Failed to fetch Pokémon. Please try again.');
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchPokemon = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`
+        );
+        setPokemon((prev) => [...prev, ...response.data.results]);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to fetch Pokémon. Please try again.');
+        setLoading(false);
+      }
+    };
+
     fetchPokemon();
-  }, [offset]);
+  }, [offset]); // Now the dependency array is valid!
 
   const handleSearch = (term) => setSearch(term.toLowerCase());
   const loadMore = () => setOffset((prev) => prev + 20);
